@@ -8,6 +8,7 @@ license = "MIT"
 authors = ["Jeremy Soller <jackpot51@gmail.com>"]
 # </reagent>
 edition = "2018"
+include = ["/templates"]
 
 [dependencies]
 ramhorns = "0.5.0"
