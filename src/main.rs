@@ -61,9 +61,6 @@ fn main() {
                 });
             }
 
-            generate!("cargo/Cargo.toml", "Cargo.toml");
-            generate!("cargo/rustfmt.toml", "rustfmt.toml");
-
             generate!("debian/source/format", "debian/source/format");
             generate!("debian/changelog", "debian/changelog");
             generate!("debian/compat", "debian/compat");
@@ -85,6 +82,9 @@ fn main() {
             }
 
             generate!("make/Makefile", "Makefile");
+
+            generate!("rust/Cargo.toml", "Cargo.toml");
+            generate!("rust/rustfmt.toml", "rustfmt.toml");
         },
         Err(err) => {
             eprintln!("reagent: failed to parse config \"{}\": {}", config_path, err);
