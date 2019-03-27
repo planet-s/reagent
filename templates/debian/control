@@ -1,0 +1,12 @@
+Source: {{package}}
+Section: admin
+Priority: optional
+Maintainer: {{name}} <{{email}}>
+Build-Depends: debhelper (>=11), cargo
+Standards-Version: 4.1.4
+Homepage: {{url}}
+
+Package: {{package}}
+Architecture: any
+Depends: ${shlibs:Depends}
+Description: {{description}}

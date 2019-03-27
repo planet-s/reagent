@@ -1,0 +1,5 @@
+# Cargo binary outputs
+/target
+
+# Rustfmt backup files
+**/*.rs.bk

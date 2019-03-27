@@ -1,0 +1,7 @@
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: {{package}}
+Source: {{url}}
+
+Files: *
+Copyright: Copyright 2019 {{name}}
+License: {{license}}
