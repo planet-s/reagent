@@ -10,8 +10,8 @@ authors = ["Jeremy Soller <jackpot51@gmail.com>"]
 edition = "2018"
 include = [
     "/Cargo.toml",
-    "/src",
-    "/templates"
+    "/src/**/*",
+    "/templates/**/*"
 ]
 
 [dependencies]
