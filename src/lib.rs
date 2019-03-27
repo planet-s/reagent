@@ -1,5 +1,8 @@
 use ramhorns::Content;
 use serde::{Deserialize, Serialize};
+use std::{fs, io};
+use std::path::Path;
+use toml;
 
 pub use self::cargo::Cargo;
 mod cargo;
@@ -36,4 +39,16 @@ pub struct Config {
     pub name: Option<String>,
     /// The email of the package maintainer: `"jackpot51@gmail.com"`
     pub email: Option<String>,
+}
+
+impl Config {
+    pub fn from_path<P: AsRef<Path>>(path: P) -> io::Result<Self> {
+        let toml = fs::read_to_string(path)?;
+        toml::from_str(&toml).map_err(|err| {
+            io::Error::new(
+                io::ErrorKind::InvalidData,
+                err
+            )
+        })
+    }
 }
