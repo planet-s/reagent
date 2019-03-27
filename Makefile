@@ -7,7 +7,7 @@ includedir = $(prefix)/include
 datarootdir = $(prefix)/share
 datadir = $(datarootdir)
 
-.PHONY: all clean distclean install uninstall run test update FORCE
+.PHONY: all clean distclean format install uninstall run test update FORCE
 
 BIN=reagent
 
@@ -18,6 +18,9 @@ clean:
 
 distclean: clean
 	rm -rf .cargo vendor
+
+format:
+	cargo fmt --all
 
 install: all
 	install -D -m 0755 "target/release/$(BIN)" "$(DESTDIR)$(bindir)/$(BIN)"

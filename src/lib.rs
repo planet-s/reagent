@@ -1,7 +1,6 @@
 use ramhorns::{Content, Template};
 use serde::{Deserialize, Serialize};
-use std::{fs, io};
-use std::path::Path;
+use std::{fs, io, path::Path};
 use toml;
 
 /// Configuration for `reagent`, stored in `reagent.toml`
@@ -27,12 +26,7 @@ impl Reagent {
     /// Create a reagent instance from a toml file
     pub fn from_path<P: AsRef<Path>>(path: P) -> io::Result<Self> {
         let toml = fs::read_to_string(path)?;
-        toml::from_str(&toml).map_err(|err| {
-            io::Error::new(
-                io::ErrorKind::InvalidData,
-                err
-            )
-        })
+        toml::from_str(&toml).map_err(|err| io::Error::new(io::ErrorKind::InvalidData, err))
     }
 
     /// Split a string based on reagent tags, returning the following:
@@ -65,23 +59,23 @@ impl Reagent {
             last_index = index + newline.len();
         }
 
-
         let start = start_opt.unwrap_or(0);
         let end = end_opt.unwrap_or(string.len());
 
-        (
-            &string[..start],
-            &string[start..end],
-            &string[end..]
-        )
+        (&string[..start], &string[start..end], &string[end..])
     }
 
     /// Generate updated file based on input template
     /// If the file is empty, use the entire input file to generate it
     /// If the file is not empty, only generate the sections inside of reagent tags
-    /// This starts from the line after a <reagent> tag, and ends on the line before a </reagent> tag
-    pub fn generate(&self, input: &str, original_opt: Option<&str>) -> Result<String, ramhorns::Error> {
-        let template =  Template::new(input)?;
+    /// This starts from the line after a <reagent> tag, and ends on the line before a </reagent>
+    /// tag
+    pub fn generate(
+        &self,
+        input: &str,
+        original_opt: Option<&str>,
+    ) -> Result<String, ramhorns::Error> {
+        let template = Template::new(input)?;
         let rendered = template.render(self);
 
         let rendered_split = Self::split(&rendered);
@@ -91,9 +85,7 @@ impl Reagent {
         };
 
         let mut updated = String::with_capacity(
-            original_split.0.len() +
-            rendered_split.1.len() +
-            original_split.2.len()
+            original_split.0.len() + rendered_split.1.len() + original_split.2.len(),
         );
 
         updated.push_str(original_split.0);

@@ -1,6 +1,5 @@
 use reagent::Reagent;
-use std::{fs, process};
-use std::path::Path;
+use std::{fs, path::Path, process};
 
 fn generate<P: AsRef<Path>>(reagent: &Reagent, input: &str, generated: P) {
     let generated = generated.as_ref();
@@ -51,14 +50,14 @@ fn main() {
             println!("{:#?}", reagent);
 
             macro_rules! generate {
-                ($template:expr, $generated:expr) => ({
+                ($template:expr, $generated:expr) => {{
                     generate(
                         &reagent,
                         include_str!(concat!("../templates/", $template)),
-                        $generated
+                        $generated,
                     );
                     println!("{}", $generated);
-                });
+                }};
             }
 
             generate!("debian/source/format", "debian/source/format");
@@ -74,7 +73,7 @@ fn main() {
                 match license.as_str() {
                     "MIT" => {
                         generate!("license/LICENSE.MIT", "LICENSE");
-                    },
+                    }
                     _ => {
                         eprintln!("reagent: no template for license \"{}\"", license);
                     }
@@ -85,7 +84,7 @@ fn main() {
 
             generate!("rust/cargo", "Cargo.toml");
             generate!("rust/rustfmt", "rustfmt.toml");
-        },
+        }
         Err(err) => {
             eprintln!("reagent: failed to parse config \"{}\": {}", config_path, err);
             process::exit(1);
