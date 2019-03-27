@@ -69,6 +69,8 @@ fn main() {
 
             generate!("git/gitignore", ".gitignore");
 
+            generate!("gitlab/gitlab-ci.yml", ".gitlab-ci.yml");
+
             if let Some(license) = reagent.license.as_ref() {
                 match license.as_str() {
                     "MIT" => {
