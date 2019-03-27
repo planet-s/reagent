@@ -13,7 +13,7 @@ linux:
         - cargo test
 
 linux:stable:
-    image: rustlang/rust:stable
+    image: rust:latest
     script:
         - cargo build
         - cargo test
