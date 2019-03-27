@@ -83,8 +83,8 @@ fn main() {
 
             generate!("make/Makefile", "Makefile");
 
-            generate!("rust/Cargo.toml", "Cargo.toml");
-            generate!("rust/rustfmt.toml", "rustfmt.toml");
+            generate!("rust/cargo", "Cargo.toml");
+            generate!("rust/rustfmt", "rustfmt.toml");
         },
         Err(err) => {
             eprintln!("reagent: failed to parse config \"{}\": {}", config_path, err);
