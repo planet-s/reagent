@@ -20,6 +20,9 @@ pub struct Reagent {
     pub name: Option<String>,
     /// The email of the package maintainer: `"jackpot51@gmail.com"`
     pub email: Option<String>,
+    /// Build for Redox OS
+    #[serde(default)]
+    pub redox: bool,
 }
 
 impl Reagent {

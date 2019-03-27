@@ -17,7 +17,6 @@ linux:stable:
     script:
         - cargo build
         - cargo test
-
 {{#redox}}
 redox:
     variables:
@@ -27,10 +26,7 @@ redox:
         - apt-get install -qq tar
         - wget -O - https://static.redox-os.org/toolchain/x86_64-unknown-redox/relibc-install.tar.gz |
           tar --extract --gzip --directory /usr/local
-        - rustup default nightly-2018-11-07
         - rustup target add x86_64-unknown-redox
         - cargo build --target x86_64-unknown-redox
-
 {{/redox}}
-
 # </reagent>

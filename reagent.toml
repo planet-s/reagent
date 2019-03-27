@@ -5,3 +5,4 @@ version = "0.1.0"
 license = "MIT"
 name = "Jeremy Soller"
 email = "jackpot51@gmail.com"
+redox = true
