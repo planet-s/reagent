@@ -1,0 +1,12 @@
+Source: reagent
+Section: admin
+Priority: optional
+Maintainer: Jeremy Soller <jackpot51@gmail.com>
+Build-Depends: debhelper (>=11), cargo
+Standards-Version: 4.1.4
+Homepage: https://gitlab.redox-os.org/redox-os/reagent
+
+Package: reagent
+Architecture: any
+Depends: ${shlibs:Depends}
+Description: Redox OS Standard Tests

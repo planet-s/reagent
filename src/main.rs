@@ -25,6 +25,16 @@ fn generate<P: AsRef<Path>>(reagent: &Reagent, input: &str, generated: P) {
         }
     };
 
+    if let Some(parent) = generated.parent() {
+        match fs::create_dir_all(parent) {
+            Ok(_) => (),
+            Err(err) => {
+                eprintln!("reagent: failed to create directory \"{}\": {}", parent.display(), err);
+                process::exit(1);
+            }
+        }
+    }
+
     match fs::write(generated, updated) {
         Ok(_) => (),
         Err(err) => {
@@ -47,22 +57,34 @@ fn main() {
                         include_str!(concat!("../templates/", $template)),
                         $generated
                     );
+                    println!("{}", $generated);
                 });
             }
 
             generate!("cargo/Cargo.toml", "Cargo.toml");
             generate!("cargo/rustfmt.toml", "rustfmt.toml");
-            generate!("git/ignore", ".gitignore");
+
+            generate!("debian/source/format", "debian/source/format");
+            generate!("debian/changelog", "debian/changelog");
+            generate!("debian/compat", "debian/compat");
+            generate!("debian/control", "debian/control");
+            generate!("debian/copyright", "debian/copyright");
+            generate!("debian/rules", "debian/rules");
+
+            generate!("git/gitignore", ".gitignore");
+
             if let Some(license) = reagent.license.as_ref() {
                 match license.as_str() {
                     "MIT" => {
-                        generate!("license/MIT", "LICENSE");
+                        generate!("license/LICENSE.MIT", "LICENSE");
                     },
                     _ => {
                         eprintln!("reagent: no template for license \"{}\"", license);
                     }
                 }
             }
+
+            generate!("make/Makefile", "Makefile");
         },
         Err(err) => {
             eprintln!("reagent: failed to parse config \"{}\": {}", config_path, err);
