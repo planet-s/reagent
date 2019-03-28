@@ -60,12 +60,14 @@ fn main() {
                 }};
             }
 
-            generate!("debian/source/format", "debian/source/format");
-            generate!("debian/changelog", "debian/changelog");
-            generate!("debian/compat", "debian/compat");
-            generate!("debian/control", "debian/control");
-            generate!("debian/copyright", "debian/copyright");
-            generate!("debian/rules", "debian/rules");
+            if reagent.debian {
+                generate!("debian/source/format", "debian/source/format");
+                generate!("debian/changelog", "debian/changelog");
+                generate!("debian/compat", "debian/compat");
+                generate!("debian/control", "debian/control");
+                generate!("debian/copyright", "debian/copyright");
+                generate!("debian/rules", "debian/rules");
+            }
 
             generate!("git/gitignore", ".gitignore");
 

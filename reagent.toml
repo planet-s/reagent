@@ -1,8 +1,18 @@
+# Name of the package
 package = "reagent"
+# Description of the package
 description = "Redox OS Standard Tests"
+# URL to use when for repository or homepage
 url = "https://gitlab.redox-os.org/redox-os/reagent"
+# Current version
 version = "0.1.0"
+# License, as defined by https://spdx.org/licenses/
 license = "MIT"
+# Maintainer name
 name = "Jeremy Soller"
+# Maintainer email
 email = "jackpot51@gmail.com"
+# Generate Debian packaging
+debian = true
+# Generate CI for Redox
 redox = true
