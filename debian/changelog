@@ -1,5 +1,5 @@
-reagent (0.1.0) stable; urgency=medium
+reagent (0.1.1) stable; urgency=medium
 
-  * Crate version 0.1.0
+  * Crate version 0.1.1
 
  -- Jeremy Soller <jackpot51@gmail.com>  Wed, 27 Mar 2019 10:19:45 -0600

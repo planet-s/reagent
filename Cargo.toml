@@ -3,7 +3,7 @@
 name = "reagent"
 description = "Redox OS Standard Tests"
 repository = "https://gitlab.redox-os.org/redox-os/reagent"
-version = "0.1.0"
+version = "0.1.1"
 license = "MIT"
 authors = ["Jeremy Soller <jackpot51@gmail.com>"]
 # </reagent>
